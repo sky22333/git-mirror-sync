@@ -58,7 +58,7 @@ docker run \
   -e GITEE_TOKEN \
   -e CNB_TOKEN \
   -e CODEBERG_TOKEN \
-  ghcr.io/wananle88/git-mirror-sync
+  ghcr.io/sky22333/git-mirror-sync
 ```
 
 ### 4. CI 定时任务示例
