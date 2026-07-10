@@ -1,0 +1,10 @@
+.git
+.github
+.idea
+.vscode
+*.exe
+git-mirror-sync
+tmp-sdk-inspect
+*.md
+*.tmp
+/tmp/

@@ -1,0 +1,32 @@
+name: Mirror Sync
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # 每天 UTC 02:00
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+
+      - name: Build
+        run: go build -o git-mirror-sync ./cmd
+
+      - name: Run mirror sync
+        env:
+          # 使用具备 repo 权限的 PAT（不要用 Actions 默认 GITHUB_TOKEN）
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+        run: ./git-mirror-sync -config config.toml

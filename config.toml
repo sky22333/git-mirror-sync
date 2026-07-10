@@ -1,0 +1,21 @@
+# 本地/CI 使用的配置文件（可复制自 configs/config.example.toml）
+# Token 请通过环境变量注入，切勿写入本文件。
+
+[source]
+provider = "github"
+token_env = "GITHUB_TOKEN"
+include_forks = true
+include_archived = true
+
+[[targets]]
+provider = "gitlab"
+token_env = "GITLAB_TOKEN"
+owner = "CHANGE_ME"
+base_url = "https://gitlab.com"
+
+[policy]
+visibility = "follow"
+create_missing = true
+delete_missing = false
+concurrency = 2
+max_retries = 3

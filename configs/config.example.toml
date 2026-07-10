@@ -1,0 +1,52 @@
+# 示例配置：复制为项目根目录 config.toml 后按需修改
+# Token 不要写在本文件，通过环境变量注入（见各 token_env）
+
+# ---------- 源仓库（目前仅支持 GitHub）----------
+[source]
+provider = "github"              # 固定为 github
+token_env = "GITHUB_TOKEN"       # 读取该环境变量中的 Token
+include_forks = true             # 是否同步 fork 仓库（默认 true）
+include_archived = true          # 是否同步已归档仓库（默认 true）
+
+# ---------- 备份目标（可配置多个，不需要的整段删掉）----------
+# provider: cnb | gitlab | gitee | codeberg
+# owner: 目标命名空间（用户名 / 组织名 / 群组路径）
+# token_env: Token 所在环境变量名
+# base_url: 网站地址（用于拼 Push URL）
+# api_url: API 地址（Gitee / CNB / Codeberg 需要；GitLab 一般不用）
+
+[[targets]]
+provider = "cnb"
+token_env = "CNB_TOKEN"
+owner = "your-cnb-org"           # 改成你的 CNB 组织名
+base_url = "https://cnb.cool"
+api_url = "https://api.cnb.cool"
+
+[[targets]]
+provider = "gitlab"
+token_env = "GITLAB_TOKEN"
+owner = "your-gitlab-group"      # 改成你的 GitLab 用户名或群组路径
+base_url = "https://gitlab.com"  # 自建 GitLab 改成你的域名
+
+[[targets]]
+provider = "gitee"
+token_env = "GITEE_TOKEN"
+owner = "your-gitee-username"    # 改成你的 Gitee 用户名或组织名
+base_url = "https://gitee.com"
+api_url = "https://gitee.com/api/v5"
+
+[[targets]]
+provider = "codeberg"
+token_env = "CODEBERG_TOKEN"
+owner = "your-codeberg-username" # 改成你的 Codeberg 用户名或组织名
+base_url = "https://codeberg.org"
+api_url = "https://codeberg.org/api/v1"  # 自建 Forgejo 改成你的域名/api/v1
+
+# ---------- 同步策略 ----------
+[policy]
+# private=全部私有 | public=全部公开 | follow=跟随源仓库（默认）
+visibility = "follow"
+create_missing = true            # 目标不存在时是否自动创建
+delete_missing = false           # 源已删除时是否删目标（当前不支持，保持 false）
+concurrency = 2                  # 同时同步的仓库数
+max_retries = 3                  # 网络等瞬时失败时，每个仓最多再试几次（默认 3）

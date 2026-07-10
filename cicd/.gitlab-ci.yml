@@ -1,0 +1,16 @@
+# GitLab CI — 定时镜像同步
+# 在 CI/CD Variables 中配置：GITHUB_TOKEN / CNB_TOKEN / GITLAB_TOKEN / GITEE_TOKEN / CODEBERG_TOKEN
+
+stages:
+  - sync
+
+mirror-sync:
+  stage: sync
+  image: golang:1.26
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "web"
+  script:
+    - go build -o git-mirror-sync ./cmd
+    - ./git-mirror-sync -config config.toml
+  timeout: 6h

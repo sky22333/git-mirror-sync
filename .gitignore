@@ -1,0 +1,22 @@
+# Binaries
+*.exe
+/git-mirror-sync
+/dist/
+
+# Local config with secrets must never be committed if customized with tokens
+# (tokens should only live in env / CI secrets)
+
+# Go
+/vendor/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Temp
+tmp-sdk-inspect/
+*.tmp
+/tmp/

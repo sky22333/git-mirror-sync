@@ -1,0 +1,11 @@
+# CNB Pipeline — 定时镜像同步
+# 在流水线密钥中配置：GITHUB_TOKEN / CNB_TOKEN / GITLAB_TOKEN / GITEE_TOKEN / CODEBERG_TOKEN
+
+main:
+  docker:
+    image: golang:1.26
+  stages:
+    - name: mirror-sync
+      script: |
+        go build -o git-mirror-sync ./cmd
+        ./git-mirror-sync -config config.toml
