@@ -13,7 +13,7 @@
 - 纯 Go（go-git），不调用系统 git
 - Token 仅通过环境变量 / CI Secret 注入
 
-## 使用
+## 使用教程
 
 ### 1. 配置文件
 
@@ -23,7 +23,7 @@ cp configs/config.example.toml config.toml
 
 编辑 `config.toml`，具体说明见[示例配置](configs/config.example.toml)中的注释。
 
-### 2. Token
+### 2. Token变量说明
 
 | 环境变量 | 说明 |
 |---------|------|
@@ -37,8 +37,9 @@ cp configs/config.example.toml config.toml
 
 令牌必须以`环境变量`或者ci的`密钥变量`方式配置，不要明文写入配置文件。
 
-### 3. 本地运行示例
+### 3. 运行示例
 
+1：配置Token
 ```
 export GITHUB_TOKEN="ghp_xxxx"
 export GITLAB_TOKEN="glpat-xxxx"
@@ -47,12 +48,12 @@ export CNB_TOKEN="xxxx"
 export CODEBERG_TOKEN="xxxx"
 ```
 
+2：二进制文件运行
 ```bash
 ./git-mirror-sync -config config.toml
 ```
 
-Docker：
-
+3：Docker运行
 ```bash
 docker run \
   --rm \
@@ -65,6 +66,6 @@ docker run \
   ghcr.io/sky22333/git-mirror-sync
 ```
 
-### 4. CI 定时任务示例
+### 正式环境CI定时任务
 
-将 [`example`](example) 下对应ci模板拷到目标平台启用，并配置上述环境变量密钥
+正式环境建议使用ci流水线定时运行，将 [`example`](example) 下对应ci模板示例拷到目标平台启用，并配置上述环境变量密钥
