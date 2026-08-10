@@ -1,6 +1,6 @@
 ## Git Mirror Sync
 
-纯 Go 的 Git 多平台镜像同步工具：以 GitHub 为源，自动备份到 CNB / GitLab / Gitee / Codeberg。CI 定时运行，无需自托管。
+纯 Go 的 Git 多平台镜像同步工具：以 GitHub 为源，自动备份到 CNB / GitLab / Gitee / Codeberg。CI 定时运行。
 
 ## 特性
 
