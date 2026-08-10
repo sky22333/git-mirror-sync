@@ -63,8 +63,4 @@ docker run \
 
 ### 4. CI 定时任务示例
 
-将 `cicd/` 下对应模板拷到目标平台启用，并配置上述 Secret：
-
-- GitHub：`cicd/github-ci.yml`
-- GitLab：`cicd/.gitlab-ci.yml`
-- CNB：`cicd/.cnb.yml`
+将 [`example`](example) 下对应模板拷到目标平台启用，并配置上述环境变量密钥
