@@ -1,4 +1,4 @@
-# 本地/CI 使用的配置文件（可复制自 configs/config.example.toml）
+# 完整示例配置见 configs/config.example.toml
 # Token 请通过环境变量注入，切勿写入本文件。
 
 [source]
