@@ -21,7 +21,7 @@
 cp configs/config.example.toml config.toml
 ```
 
-编辑 `config.toml`，填写各目标的 `owner`（用户名 / 组织 / 群组）。按需保留或删除 `[[targets]]`。
+编辑 `config.toml`，具体说明见[示例配置](configs/config.example.toml)中的注释。
 
 ### 2. Token
 
@@ -63,4 +63,4 @@ docker run \
 
 ### 4. CI 定时任务示例
 
-将 [`example`](example) 下对应模板拷到目标平台启用，并配置上述环境变量密钥
+将 [`example`](example) 下对应ci模板拷到目标平台启用，并配置上述环境变量密钥
