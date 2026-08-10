@@ -1,6 +1,6 @@
 ## Git Mirror Sync
 
-纯 Go 的 Git 多平台镜像同步工具：以 GitHub 为源，自动备份到 CNB / GitLab / Gitee / Codeberg。CI 定时运行，无需自建服务器。
+纯 Go 的 Git 多平台镜像同步工具：以 GitHub 为源，自动备份到 CNB / GitLab / Gitee / Codeberg。CI 定时运行，无需自托管。
 
 ## 特性
 
@@ -15,7 +15,7 @@
 
 ## 使用
 
-### 1. 配置
+### 1. 配置文件
 
 ```bash
 cp configs/config.example.toml config.toml
@@ -27,13 +27,17 @@ cp configs/config.example.toml config.toml
 
 | 环境变量 | 说明 |
 |---------|------|
-| `GITHUB_TOKEN` | GitHub PAT（`repo`）；Actions 用 Secret `GH_PAT` 注入 |
-| `GITLAB_TOKEN` | GitLab PAT（需 `api`，含读写仓库与管理保护分支） |
-| `GITEE_TOKEN` | Gitee 私人令牌 |
-| `CNB_TOKEN` | CNB Access Token |
-| `CODEBERG_TOKEN` | Codeberg / Forgejo Access Token（需 `write:repository`；组织仓还需组织写权限） |
+| `GITHUB_TOKEN` | GitHub 访问令牌 |
+| `GITLAB_TOKEN` | GitLab 访问令牌 |
+| `GITEE_TOKEN` | Gitee 访问令牌 |
+| `CNB_TOKEN` | CNB 访问令牌 |
+| `CODEBERG_TOKEN` | Codeberg / Forgejo 访问令牌 |
 
-### 3. 运行
+需要仓库的完整读写权限，组织仓库也需要组织读写权限。
+
+令牌必须以`环境变量`或者ci的`密钥变量`方式配置，不要明文写入配置文件。
+
+### 3. 本地运行示例
 
 ```
 export GITHUB_TOKEN="ghp_xxxx"
